@@ -1,0 +1,15 @@
+---
+name: sumit
+DOB: 30/5/1880
+Addresses: lucknow
+tools:
+  - a
+  - b
+  - c
+  - s
+hobbies: -teaching -movies -cricket
+expreience:
+  devops:
+    linux: 2
+    docker: 5
+    kubernetes: 8
