@@ -19,3 +19,9 @@ jobs:
 
       - name: Say hello to username
         run: echo "hi $USER"
+  details:
+    runs-on: ubuntu-latest
+    steps:
+      - name: show what is version of python , doocker etc
+      run: docker --version && python --version
+  
