@@ -2,6 +2,16 @@ name: cicd
 
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        description: this is the ennvironment value where workflow runs
+        default: 'dev'
+        required: true
+        type: choice
+        options:
+          - dev 
+          - prod
+          - staging
 #every jobs need seperate runners is called parallelism
 jobs:
   code:
