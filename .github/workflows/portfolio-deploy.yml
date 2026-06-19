@@ -1,43 +1,35 @@
-# Name of the workflow shown in the GitHub Actions tab
 name: Portfolio Deployment
 
-# Trigger the workflow whenever code is pushed to the main branch
 on:
   push:
     branches:
       - main
 
-# Permissions required for GitHub Pages deployment
 permissions:
-  pages: write      # Allows the workflow to deploy to GitHub Pages
-  id-token: write   # Required for secure authentication during deployment
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
-    # Use the latest Ubuntu runner
     runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    
-
 
     steps:
-      # Step 1: Download the repository code onto the runner
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Configure GitHub Pages environment
-      - name: Setup GitHub Pages
+      - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # Step 3: Upload website files as an artifact
-      # 'path: .' means upload all files from the repository root
-      - name: Upload static files
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
 
-      # Step 4: Deploy the uploaded artifact to GitHub Pages
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
